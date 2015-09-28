@@ -1,0 +1,86 @@
+.tagline, .title{
+	margin: 0px;
+	display: block;
+}
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.book img{
+	width: 9%;
+	padding: 5px;
+
+}
+.book{
+	border: 1px solid;
+	position: relative;
+	margin: 1%;
+}
+.book-details{
+	display: inline-block;
+	vertical-align: top;
+}
+.rating{
+	display: block;
+}
+.addKartbtn{
+	bottom: 18px;
+	right: 30px;
+	position: absolute;
+}
+.search-bar{
+	width: 20%;
+}
+.search-books{
+	margin: 1%;
+}
+#header_wrap{
+	background-color: rgb(48, 46, 43);
+	color: beige;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+.nav-bar{
+	margin-top: 1%;
+	display: inline-block;
+	margin-left: 62%;
+}
+.container{
+	position: relative;
+	top: 80px;
+}
+.container.ng-enter{
+	web-kit-transition:.5s linear all;
+	transition:.5s linear all;
+	opacity: 0;
+	top: 180px;
+}
+.container.ng-enter-active{
+	opacity: 1;
+	top: 80px;
+}
+.book.ng-leave{
+	transition:.5s linear all;
+	left: 0px;
+	opacity: 1;
+}
+.book.ng-leave-active{
+	left: 500px;
+	opacity: 0;
+}
+.book.ng-enter{
+	transition:.5s linear all;
+	left: 500px;
+	opacity: 0;
+}
+.book.ng-enter-active{
+	left: 0px;
+	opacity: 1;
+}
+.logo-wrap{
+	display: inline-block;
+	padding: 5px;
+	padding-left: 85px;
+}

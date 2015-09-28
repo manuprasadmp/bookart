@@ -1,0 +1,17 @@
+
+<div class="books-list-wrapper" >
+<div class = "search-books">
+	<input type="text" class="search-bar" placeholder="search here..." ng-model="searchStr">
+</div>
+	<div class="book" ng-repeat="book in books | filter:searchStr">
+		<img src="{{book.imgUrl}}">
+		<div class="book-details">
+			<h3 class="name">{{book.name}}</h3>
+			<span class="author">Author: {{book.author}}</span>
+			<p class="description">Description: {{book.description}}</p>
+			<span class="price">Price: {{book.price | currency:"Rs."}}</span>
+			<span class="rating">Rating: {{book.rating}}</span>
+		</div>
+		<button type="button" class="btn btn-primary btn-sm pull-right addKartbtn" ng-click="addToKart(book)">Add to kart</button>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+<div class="books-list-wrapper" >
+	<div class="book" ng-repeat="book in kart track by $index">
+		<img src="{{book.imgUrl}}">
+		<div class="book-details">
+			<h3 class="name">{{book.name}}</h3>
+			<span class="author">Author: {{book.author}}</span>
+			<p class="description">Description: {{book.description}}</p>
+			<span class="price">Price: {{book.price | currency:"Rs."}}</span>
+			<span class="rating">Rating: {{book.rating}}</span>
+		</div>
+		<button type="button" class="btn btn-primary btn-sm pull-right addKartbtn" ng-click="buy(book)">Buy</button>
+	</div>
+</div>
