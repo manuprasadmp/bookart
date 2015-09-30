@@ -3,7 +3,7 @@
 <div class = "search-books">
 	<input type="text" class="search-bar" placeholder="search here..." ng-model="searchStr">
 </div>
-	<div class="book" ng-repeat="book in books | filter:searchStr">
+	<div class="book" ng-repeat="book in books | filter:searchStr ">
 		<img src="{{book.imgUrl}}">
 		<div class="book-details">
 			<h3 class="name">{{book.name}}</h3>

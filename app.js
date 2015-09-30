@@ -1,9 +1,15 @@
 var myApp = angular.module("myApp",["ngRoute","ngAnimate"]);
+
 myApp.config(function($routeProvider){
 	$routeProvider
 		.when("/books",{
 			templateUrl:"partials/book-list.html",
-			controller:"booksListCtrl"
+			controller:"booksListCtrl",
+			resolve: {
+                data: function(bookService){
+                	return bookService.getBooks()
+                }
+            }
 		})
 		.when("/kart",{
 			templateUrl:"partials/kart-list.html",
@@ -13,61 +19,17 @@ myApp.config(function($routeProvider){
 			redirectTo:"/books"
 		});
 });
-myApp.factory("bookService",function(){
-	var books = [
-	{
-		imgUrl:"images/0804138141.1.zoom.jpg",
-		name:"Why Not Me",
-		price:"400",
-		author:"Mindy kaling",
-		description:"sawwwwwwwwwwwwwwwwwwwwwwwww asdfa dasw",
-		rating:"4"
-	},
-	{
-		imgUrl:"images/1441038511.jpg",
-		name:"Elijha Calling",
-		price:"250",
-		author:"Ken Mental",
-		description:"ds sf asf asfsaf asfasfas ",
-		rating:"3"
-	},
-	{
-		imgUrl:"images/index_36.jpg",
-		name:"At The Waters Edge",
-		price:"650",
-		author:"sara greun",
-		description:"ds sf asf asfsaf asfasfas yo its the story of a lonley girl sitting at beach side doing nothing ",
-		rating:"5"
-	},
-	{
-		imgUrl:"images/0804138141.1.zoom.jpg",
-		name:"Why Not Me",
-		price:"400",
-		author:"Mindy kaling",
-		description:"sawwwwwwwwwwwwwwwwwwwwwwwww asdfa dasw",
-		rating:"4"
-	},
-	{
-		imgUrl:"images/1441038511.jpg",
-		name:"Elijha Calling",
-		price:"250",
-		author:"Ken Mental",
-		description:"ds sf asf asfsaf asfasfas ",
-		rating:"3"
-	},
-	{
-		imgUrl:"images/index_36.jpg",
-		name:"At The Waters Edge",
-		price:"650",
-		author:"sara greun",
-		description:"ds sf asf asfsaf asfasfas yo its the story of a lonley girl sitting at beach side doing nothing ",
-		rating:"5"
-	}
-	];
-	return {
-		getBooks:function(){
-			return books;
-		}
+
+myApp.service("bookService",function($http,$q){
+	
+	this.getBooks=function(){
+		var defer = $q.defer();
+		$http.get("json/book.json").success(function(data){
+				defer.resolve(data);
+				
+			});
+
+			return defer.promise;
 	}
 });
 
@@ -99,6 +61,7 @@ myApp.factory("kartService", function() {
 		}
 	}
 });
+
 myApp.controller("headerCtrl",function($scope,$location){
 	$scope.appDetails = {
 		title : "Bookart",
@@ -113,8 +76,9 @@ myApp.controller("headerCtrl",function($scope,$location){
 	}
 
 });
-myApp.controller("booksListCtrl",function($scope,bookService,kartService){
-	$scope.books = bookService.getBooks();
+
+myApp.controller("booksListCtrl",function($scope,bookService,kartService,data){
+	$scope.books = data;
 	$scope.addToKart = function(book){
 		kartService.addToKart(book);
 	}
@@ -127,3 +91,4 @@ myApp.controller("kartListCtrl",function($scope,kartService){
 	} 
 
 });
+
